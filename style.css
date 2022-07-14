@@ -2,11 +2,55 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-size: 18px;
 }
-
+#sliderContainer {
+    width: 500px; /* Width of the outside container */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 300px; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 10px;
+  }
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: black; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+button{
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 18px;
+    border: 4px dashed gray;
+    transition: all 0.5s;
+    border-radius: 10px;
+}
+button:hover{
+    opacity: 1.4;
+    transform: scale(1.1);
+}
 #squares{
-    width: 700px;
-    height: 700px;
+    width: 600px;
+    height: 600px;
     display: flex;
     border: 10px solid gray;
     
@@ -14,7 +58,7 @@ body{
 
 
 #squares div{
-    border: 2px solid black;
+    border: 1px solid black;
     padding:  0;
     flex: auto;
 }
@@ -26,4 +70,8 @@ body{
 
 #row div{
     flex: auto;
+}
+
+.colored {
+    background-color: black;
 }
