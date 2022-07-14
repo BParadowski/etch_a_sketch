@@ -5,13 +5,31 @@ const button = document.getElementById("newGrid");
 const slider = document.getElementById("myRange");
 let toggle = 1; // 0 for black, 1 for rainbow, 2 for opacity
 drawGrid(16); // Initial grid generation
+const buttonBlack = document.getElementById("black");
+const buttonRainbow = document.getElementById("rainbow");
+const buttonOpacity = document.getElementById("opacity");
+
+button.addEventListener('click', backToWhite);
+buttonBlack.addEventListener('click', function (e) { 
+    toggle = 0; 
+    this.classList.add("selected");
+    buttonRainbow.classList.remove("selected");
+    buttonOpacity.classList.remove("selected")});
+buttonRainbow.addEventListener('click', function (e) { 
+    toggle = 1; 
+    this.classList.add("selected");
+    buttonOpacity.classList.remove("selected");
+    buttonBlack.classList.remove("selected");})
+buttonOpacity.addEventListener('click', function (e) { 
+    toggle = 2; 
+    this.classList.add("selected");
+    buttonBlack.classList.remove("selected");
+    buttonRainbow.classList.remove("selected");})
 
 slider.oninput = function() {
     squareNumbers.textContent = `${this.value}x${this.value}`;
   }
 
-// squares.forEach(square => square.addEventListener('mouseover', paint));
-button.addEventListener('click', backToWhite);
 
 function drawGrid(x){
     let j = 0;
@@ -32,7 +50,6 @@ function drawGrid(x){
     let squares = document.querySelectorAll('#row div');
     if (toggle===1){
         squares.forEach(square => square.addEventListener('mouseover', paintTheRainbow));
-        console.log("Agabu");
     }
     else{
         squares.forEach(square => square.addEventListener('mouseover', paint));
@@ -49,6 +66,8 @@ function backToWhite(){
         squareContainer.removeChild(squareContainer.firstChild);
     }
     drawGrid(newX);
+    let buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.classList.remove("selected"));
 
 }
 
@@ -60,6 +79,5 @@ function getRandomColor(){
     let r = Math.floor(Math.random()*255);
     let g = Math.floor(Math.random()*255);
     let b = Math.floor(Math.random()*255);
-    console.log(`rgb(${r}, ${g}, ${b})`)
     return `rgb(${r}, ${g}, ${b})`;
 }
