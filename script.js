@@ -3,9 +3,8 @@ const squareNumbers = document.getElementById("numOfSquares");
 squareNumbers.textContent = "16x16";
 const button = document.getElementById("newGrid");
 const slider = document.getElementById("myRange");
-
-let xbyx = 16;
-drawGrid(xbyx);
+let toggle = 1; // 0 for black, 1 for rainbow, 2 for opacity
+drawGrid(16); // Initial grid generation
 
 slider.oninput = function() {
     squareNumbers.textContent = `${this.value}x${this.value}`;
@@ -31,7 +30,13 @@ function drawGrid(x){
     }
     squareNumbers.textContent = `${x}x${x}`;
     let squares = document.querySelectorAll('#row div');
-    squares.forEach(square => square.addEventListener('mouseover', paint));
+    if (toggle===1){
+        squares.forEach(square => square.addEventListener('mouseover', paintTheRainbow));
+        console.log("Agabu");
+    }
+    else{
+        squares.forEach(square => square.addEventListener('mouseover', paint));
+    }
 }
 
 function paint(e){
@@ -47,3 +52,14 @@ function backToWhite(){
 
 }
 
+function paintTheRainbow(e){
+    this.style["background-color"] = getRandomColor();
+}
+
+function getRandomColor(){
+    let r = Math.floor(Math.random()*255);
+    let g = Math.floor(Math.random()*255);
+    let b = Math.floor(Math.random()*255);
+    console.log(`rgb(${r}, ${g}, ${b})`)
+    return `rgb(${r}, ${g}, ${b})`;
+}
