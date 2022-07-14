@@ -2,11 +2,16 @@ const squareContainer = document.getElementById("squares");
 const squareNumbers = document.getElementById("numOfSquares");
 squareNumbers.textContent = "16x16";
 const button = document.getElementById("newGrid");
+const slider = document.getElementById("myRange");
+
 let xbyx = 16;
 drawGrid(xbyx);
 
-const squares = document.querySelectorAll('#row div');
-squares.forEach(square => square.addEventListener('mouseover', paint));
+slider.oninput = function() {
+    squareNumbers.textContent = `${this.value}x${this.value}`;
+  }
+
+// squares.forEach(square => square.addEventListener('mouseover', paint));
 button.addEventListener('click', backToWhite);
 
 function drawGrid(x){
@@ -25,6 +30,8 @@ function drawGrid(x){
     j++;
     }
     squareNumbers.textContent = `${x}x${x}`;
+    let squares = document.querySelectorAll('#row div');
+    squares.forEach(square => square.addEventListener('mouseover', paint));
 }
 
 function paint(e){
@@ -32,6 +39,11 @@ function paint(e){
 }
 
 function backToWhite(){
-    squares.forEach(square => square.classList.remove("colored"));
+    let newX = slider.value;
+    while (squareContainer.firstChild){
+        squareContainer.removeChild(squareContainer.firstChild);
+    }
+    drawGrid(newX);
+
 }
 

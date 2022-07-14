@@ -45,7 +45,7 @@ button{
     border-radius: 10px;
 }
 button:hover{
-    opacity: 1.4;
+    color: rgb(86, 81, 81);
     transform: scale(1.1);
 }
 #squares{
@@ -58,7 +58,6 @@ button:hover{
 
 
 #squares div{
-    border: 1px solid black;
     padding:  0;
     flex: auto;
 }
